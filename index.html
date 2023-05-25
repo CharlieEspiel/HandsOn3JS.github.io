@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grading System</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    /* Custom styles for the template */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+    *{
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-image: linear-gradient(to top, #ffffff, #fafbff, #f3f8fe, #e9f6fc, #e0f4f8);
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      background-color: #007bff;
+      border-bottom: none;
+      padding: 20px;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .card-title {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .form-control {
+      border-radius: 5px;
+    }
+
+    .badge {
+      font-size: 17px;
+      font-weight: 500;
+      padding: 6px 10px;
+    }
+
+    .badge.pass {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .badge.fail {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    .badge.remedial {
+      background-color: #ffad0a;
+      color: #fff;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card my-3">
+      <div class="card-header">
+        <h5 class="card-title">Grading System</h5>
+      </div>
+      <div class="card-body">
+        <form class="needs-validation" novalidate autocomplete="off"  id="myForm" action="" method="post">
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="2">
+                <div class="mb-3">
+                  <label for="studName" class="form-label">Student Name</label>
+                  <input type="text" class="form-control" id="studName" placeholder="Enter the Student Name" required>
+                  <div class="invalid-feedback">Required to fill out this field.</div>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="mb-3">
+                  <label for="Filipino" class="form-label">Filipino</label>
+                  <input type="text" class="form-control" id="filipino" oninput="validateGrade(this, 'remarks1')" placeholder="Enter grade for Filipino" required>
+                  <div class="invalid-feedback">Please fill out this field not below 50 and above 100.</div>
+                </div>
+              </td>
+              <td>
+                <label for="remarks" class="form-label">Remarks</label>
+                <div class="mb-3" id="remarks1"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mb-3">
+                  <label for="english" class="form-label">English</label>
+                  <input type="text" class="form-control" id="english" oninput="validateGrade(this, 'remarks2')" placeholder="Enter grade for English" required>
+                  <div class="invalid-feedback">Please fill out this field not below 50 and above 100.</div>
+                </div>
+              </td>
+              <td>
+                <label for="remarks" class="form-label">Remarks</label>
+                <div class="mb-3" id="remarks2"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mb-3">
+                  <label for="mathematics" class="form-label">Mathematics</label>
+                  <input type="text" class="form-control" id="mathematics" oninput="validateGrade(this, 'remarks3')" placeholder="Enter grade for Mathematics" required>
+                  <div class="invalid-feedback">Please fill out this field not below 50 and above 100.</div>
+                </div>
+              </td>
+              <td>
+                <label for="remarks" class="form-label">Remarks</label>
+                <div class="mb-3" id="remarks3"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mb-3">
+                  <label for="science" class="form-label">Science</label>
+                  <input type="text" class="form-control" id="science" oninput="validateGrade(this, 'remarks4')" placeholder="Enter grade for Science" required>
+                  <div class="invalid-feedback">Please fill out this field not below 50 and above 100.</div>
+                </div>
+              </td>
+              <td>
+                <label for="remarks" class="form-label">Remarks</label>
+                <div class="mb-3" id="remarks4"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mb-3">
+                  <label for="aralingPanlipunan" class="form-label">Araling Panlipunan</label>
+                  <input type="text" class="form-control" id="aralingPanlipunan" oninput="validateGrade(this, 'remarks5')" placeholder="Enter grade for Araling Panlipunan" required>
+                  <div class="invalid-feedback">Please fill out this field not below 50 and above 100.</div>
+                </div>
+              </td>
+              <td>
+                <label for="remarks" class="form-label">Remarks</label>
+                <div class="mb-3" id="remarks5"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mb-3">
+                  <label for="mapeh" class="form-label">MAPEH</label>
+                  <input type="text" class="form-control" id="mapeh" oninput="validateGrade(this, 'remarks6')" placeholder="Enter grade for MAPEH" required>
+                  <div class="invalid-feedback">Please fill out this field not below 50 and above 100.</div>
+                </div>
+              </td>
+              <td>
+                <label for="remarks" class="form-label">Remarks</label>
+                <div class="mb-3" id="remarks6"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mb-3">
+                  <label for="values" class="form-label">Values</label>
+                  <input type="text" class="form-control" id="values" oninput="validateGrade(this, 'remarks7')" placeholder="Enter grade for Values" required>
+                  <div class="invalid-feedback">Please fill out this field not below 50 and above 100.</div>
+                </div>
+              </td>
+              <td>
+                <label for="remarks" class="form-label">Remarks</label>
+                <div class="mb-3" id="remarks7"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mb-3">
+                  <label for="tle" class="form-label">TLE</label>
+                  <input type="text" class="form-control" id="tle" oninput="validateGrade(this, 'remarks8')" placeholder="Enter grade for TLE" required>
+                  <div class="invalid-feedback">Please fill out this field not below 50 and above 100.</div>
+                </div>
+              </td>
+              <td>
+                <label for="remarks" class="form-label">Remarks</label>
+                <div class="mb-3" id="remarks8"></div>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-grid gap-2">
+          <!-- <input type="submit" value="Calculate"> -->
+          <button class="btn btn-md btn-primary" type="submit">Calculate Average</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="main.js"></script>
+  <script>
+(function () {
+  'use strict';
+
+  var forms = document.querySelectorAll('.needs-validation');
+
+  Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }else{
+          event.preventDefault();
+          getAverage();
+        }
+        
+        form.classList.add('was-validated');
+      }, false)
+    })
+})()
+
+  </script>
+</body>
+</html>
+
